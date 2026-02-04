@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Check, Zap, Download } from 'lucide-react'
+import { ArrowRight, Check, Zap, Download, TrendingUp, Users, Gauge } from 'lucide-react'
 
 export default function Page() {
   return (
@@ -29,7 +29,7 @@ export default function Page() {
           </div>
           <div className="hidden md:flex items-center gap-8">
             <nav className="flex gap-8 text-sm font-medium">
-              <a href="#" className="hover:text-primary transition">
+              <a href="#product" className="hover:text-primary transition">
                 Product
               </a>
               <a href="#" className="hover:text-primary transition">
@@ -47,14 +47,14 @@ export default function Page() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-24 px-6">
+      <section className="relative overflow-hidden pt-20 pb-12 md:pt-32 md:pb-16 px-6">
         {/* Background Gradient Orbs */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary/30 to-primary/20 rounded-full blur-3xl -z-10" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary/25 to-secondary/15 rounded-full blur-3xl -z-10" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary/40 to-primary/25 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary/30 to-secondary/20 rounded-full blur-3xl -z-10" />
 
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           {/* Social Proof Ticker */}
-          <div className="mb-12 flex justify-center">
+          <div className="mb-10 flex justify-center">
             <div className="inline-flex items-center gap-3 px-4 py-2.5 bg-white/60 backdrop-blur rounded-full border border-primary/20 shadow-sm">
               <div className="w-2.5 h-2.5 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse" />
               <span className="text-sm font-semibold text-foreground">Powering 5,000+ data pipelines</span>
@@ -62,18 +62,20 @@ export default function Page() {
           </div>
 
           {/* Main Headline */}
-          <div className="text-center mb-12">
-            <h1 className="text-6xl md:text-8xl font-black leading-tight mb-8 text-balance bg-gradient-to-r from-foreground via-primary to-secondary bg-clip-text text-transparent">
-              Fix your data.
+          <div className="text-center mb-8">
+            <h1 className="text-5xl md:text-6xl font-black leading-tight mb-6 text-balance">
+              Simplify how your
               <br />
-              In one click.
+              <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                Team gets work done
+              </span>
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-balance mb-10 font-medium leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto text-balance mb-8 font-medium leading-relaxed">
               Automated integrity for the modern data stack. Stop cleaning. Start shipping.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Button 
                 size="lg" 
                 className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 text-white font-semibold h-12 px-8 text-base"
@@ -88,12 +90,115 @@ export default function Page() {
                 Watch Demo
               </Button>
             </div>
+
+            {/* Stats */}
+            <div className="grid grid-cols-3 gap-6 mb-12 max-w-2xl mx-auto">
+              <div>
+                <p className="text-3xl md:text-4xl font-black text-primary mb-2">250K+</p>
+                <p className="text-sm text-muted-foreground font-medium">Rows/Second</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-black text-primary mb-2">99.9%</p>
+                <p className="text-sm text-muted-foreground font-medium">Uptime</p>
+              </div>
+              <div>
+                <p className="text-3xl md:text-4xl font-black text-primary mb-2">4.8/5</p>
+                <p className="text-sm text-muted-foreground font-medium">Rating</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Dashboard Preview Card */}
+          <div className="relative mx-auto max-w-5xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/10 rounded-3xl blur-2xl" />
+            <div className="relative bg-white/80 backdrop-blur border border-primary/20 rounded-3xl overflow-hidden shadow-2xl">
+              {/* Dashboard Header */}
+              <div className="border-b border-border px-8 py-6 flex items-center justify-between">
+                <div className="flex items-center gap-4">
+                  <div className="w-3 h-3 rounded-full bg-primary/40" />
+                  <div className="w-3 h-3 rounded-full bg-primary/30" />
+                  <div className="w-3 h-3 rounded-full bg-primary/20" />
+                </div>
+                <p className="text-sm font-semibold text-muted-foreground">Clarity Dashboard</p>
+                <div className="w-20" />
+              </div>
+
+              {/* Dashboard Content */}
+              <div className="p-8">
+                <div className="grid grid-cols-3 gap-6 mb-8">
+                  {/* Card 1 */}
+                  <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl p-6 border border-primary/10">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm font-semibold text-muted-foreground">Records Scanned</p>
+                      <Gauge className="w-5 h-5 text-primary" />
+                    </div>
+                    <p className="text-2xl font-bold text-foreground">2.5M</p>
+                  </div>
+
+                  {/* Card 2 */}
+                  <div className="bg-gradient-to-br from-secondary/10 to-primary/10 rounded-xl p-6 border border-secondary/10">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm font-semibold text-muted-foreground">Issues Fixed</p>
+                      <Check className="w-5 h-5 text-secondary" />
+                    </div>
+                    <p className="text-2xl font-bold text-foreground">18.4K</p>
+                  </div>
+
+                  {/* Card 3 */}
+                  <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl p-6 border border-primary/10">
+                    <div className="flex items-center justify-between mb-4">
+                      <p className="text-sm font-semibold text-muted-foreground">Accuracy</p>
+                      <TrendingUp className="w-5 h-5 text-primary" />
+                    </div>
+                    <p className="text-2xl font-bold text-foreground">99.7%</p>
+                  </div>
+                </div>
+
+                {/* Data Table */}
+                <div className="rounded-lg border border-border overflow-hidden">
+                  <table className="w-full text-sm">
+                    <thead className="bg-muted/50 border-b border-border">
+                      <tr>
+                        <th className="text-left px-6 py-3 font-semibold text-muted-foreground">Source</th>
+                        <th className="text-left px-6 py-3 font-semibold text-muted-foreground">Status</th>
+                        <th className="text-left px-6 py-3 font-semibold text-muted-foreground">Last Run</th>
+                        <th className="text-left px-6 py-3 font-semibold text-muted-foreground">Quality</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-border">
+                      <tr className="hover:bg-muted/30 transition">
+                        <td className="px-6 py-4 font-medium">PostgreSQL DB</td>
+                        <td className="px-6 py-4">
+                          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-50 text-green-700 text-xs font-semibold">
+                            <div className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+                            Active
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-muted-foreground">2 mins ago</td>
+                        <td className="px-6 py-4 font-semibold text-primary">99.2%</td>
+                      </tr>
+                      <tr className="hover:bg-muted/30 transition">
+                        <td className="px-6 py-4 font-medium">S3 Bucket</td>
+                        <td className="px-6 py-4">
+                          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 text-amber-700 text-xs font-semibold">
+                            <div className="w-1.5 h-1.5 bg-amber-500 rounded-full" />
+                            Syncing
+                          </span>
+                        </td>
+                        <td className="px-6 py-4 text-muted-foreground">5 mins ago</td>
+                        <td className="px-6 py-4 font-semibold text-primary">97.8%</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Integrity Features Section */}
-      <section className="py-24 px-6">
+      <section className="py-24 px-6" id="product">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-black mb-6 text-balance">End-to-end data integrity</h2>
