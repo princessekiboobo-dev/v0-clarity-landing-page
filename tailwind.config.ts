@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'space-grotesk': ['var(--font-space-grotesk)', 'sans-serif'],
+        'jetbrains-mono': ['var(--font-jetbrains-mono)', 'monospace'],
+      },
       colors: {
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
