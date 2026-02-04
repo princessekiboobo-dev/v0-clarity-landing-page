@@ -1,33 +1,45 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Check, Zap } from 'lucide-react'
+import { ArrowRight, Check, Zap, Download } from 'lucide-react'
 
 export default function Page() {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
+      <header className="sticky top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-foreground rounded-lg flex items-center justify-center">
-              <span className="text-background font-bold text-lg">C</span>
+          <div className="flex items-center gap-3">
+            {/* Stylish C Logo */}
+            <div className="relative w-10 h-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg opacity-100" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                  <path
+                    d="M6 12c0-3.314 2.686-6 6-6s6 2.686 6 6"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
             </div>
             <span className="font-bold text-xl">Clarity</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <nav className="flex gap-8 text-sm">
-              <a href="#" className="hover:text-muted-foreground transition">
+            <nav className="flex gap-8 text-sm font-medium">
+              <a href="#" className="hover:text-primary transition">
                 Product
               </a>
-              <a href="#" className="hover:text-muted-foreground transition">
+              <a href="#" className="hover:text-primary transition">
                 Docs
               </a>
-              <a href="#" className="hover:text-muted-foreground transition">
+              <a href="#" className="hover:text-primary transition">
                 Pricing
               </a>
             </nav>
-            <Button size="sm" variant="outline">
+            <Button size="sm" variant="outline" className="border-primary/30 hover:bg-primary/10 text-primary bg-transparent">
               Sign In
             </Button>
           </div>
@@ -35,37 +47,43 @@ export default function Page() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-20 pb-12 md:pt-32 md:pb-20 px-6">
-        <div className="mx-auto max-w-4xl">
+      <section className="relative overflow-hidden pt-24 pb-16 md:pt-40 md:pb-24 px-6">
+        {/* Background Gradient Orbs */}
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-secondary/30 to-primary/20 rounded-full blur-3xl -z-10" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-primary/25 to-secondary/15 rounded-full blur-3xl -z-10" />
+
+        <div className="mx-auto max-w-5xl">
           {/* Social Proof Ticker */}
           <div className="mb-12 flex justify-center">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-secondary rounded-full border border-border">
-              <div className="w-2 h-2 bg-green-500 rounded-full" />
-              <span className="text-sm font-medium">Powering 5,000+ data pipelines</span>
+            <div className="inline-flex items-center gap-3 px-4 py-2.5 bg-white/60 backdrop-blur rounded-full border border-primary/20 shadow-sm">
+              <div className="w-2.5 h-2.5 bg-gradient-to-r from-primary to-secondary rounded-full animate-pulse" />
+              <span className="text-sm font-semibold text-foreground">Powering 5,000+ data pipelines</span>
             </div>
           </div>
 
           {/* Main Headline */}
           <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6 text-balance">
+            <h1 className="text-6xl md:text-8xl font-black leading-tight mb-8 text-balance bg-gradient-to-r from-foreground via-primary to-secondary bg-clip-text text-transparent">
               Fix your data.
               <br />
               In one click.
             </h1>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance mb-8">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto text-balance mb-10 font-medium leading-relaxed">
               Automated integrity for the modern data stack. Stop cleaning. Start shipping.
             </p>
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-foreground hover:bg-foreground/90 text-background">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 text-white font-semibold h-12 px-8 text-base"
+              >
                 Get Started
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
               <Button
                 size="lg"
-                variant="outline"
-                className="border-2 border-foreground hover:bg-foreground/5 bg-transparent"
+                className="border-2 border-primary/30 hover:bg-primary/5 bg-white/50 backdrop-blur text-foreground font-semibold h-12 px-8 text-base"
               >
                 Watch Demo
               </Button>
@@ -75,45 +93,45 @@ export default function Page() {
       </section>
 
       {/* Integrity Features Section */}
-      <section className="py-20 px-6 bg-secondary/30">
+      <section className="py-24 px-6">
         <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">End-to-end data integrity</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 text-balance">End-to-end data integrity</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
               Everything you need to keep your data pipelines clean and running.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {/* Scan Card */}
-            <div className="bg-card border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-foreground rounded-lg flex items-center justify-center mb-6">
-                <Zap className="w-6 h-6 text-background" />
+            <div className="bg-white rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-8 shadow-lg">
+                <Zap className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Scan</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4">Scan</h3>
+              <p className="text-muted-foreground leading-relaxed font-medium">
                 Detect anomalies across millions of rows in milliseconds. Real-time insights into data quality issues.
               </p>
             </div>
 
-            {/* Resolve Card */}
-            <div className="bg-card border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-foreground rounded-lg flex items-center justify-center mb-6">
-                <Check className="w-6 h-6 text-background" />
+            {/* Resolve Card - Featured */}
+            <div className="md:col-span-1 bg-gradient-to-br from-primary to-secondary rounded-2xl p-8 shadow-2xl text-white md:scale-105 hover:shadow-2xl transition-all duration-300">
+              <div className="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center mb-8">
+                <Check className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Resolve</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4">Resolve</h3>
+              <p className="leading-relaxed font-medium text-white/90">
                 Auto-standardize dates, nulls, and schema drifts. Fix issues automatically without manual intervention.
               </p>
             </div>
 
             {/* Export Card */}
-            <div className="bg-card border border-border rounded-2xl p-8 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-foreground rounded-lg flex items-center justify-center mb-6">
-                <ArrowRight className="w-6 h-6 text-background" />
+            <div className="bg-white rounded-2xl border border-border p-8 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="w-14 h-14 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center mb-8 shadow-lg">
+                <Download className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold mb-3">Export</h3>
-              <p className="text-muted-foreground leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4">Export</h3>
+              <p className="text-muted-foreground leading-relaxed font-medium">
                 Production-ready CSV and JSON, instantly. Deploy clean data directly to your warehouse.
               </p>
             </div>
@@ -122,45 +140,57 @@ export default function Page() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-6 bg-foreground text-background">
+      <section className="py-24 px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 -z-10" />
         <div className="mx-auto max-w-4xl text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="text-5xl md:text-6xl font-black mb-8 text-balance">
             Data integrity at scale.
           </h2>
-          <p className="text-lg text-background/80 mb-8 max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
             Join thousands of teams shipping clean data faster.
           </p>
           <Button
             size="lg"
-            className="bg-background text-foreground hover:bg-background/90"
+            className="bg-gradient-to-r from-primary to-secondary hover:shadow-lg hover:shadow-primary/30 text-white font-semibold h-12 px-8 text-base"
           >
             Start Free Trial
-            <ArrowRight className="ml-2 w-4 h-4" />
+            <ArrowRight className="ml-2 w-5 h-5" />
           </Button>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border py-12 px-6 bg-background">
+      <footer className="border-t border-border py-16 px-6 bg-white/50 backdrop-blur">
         <div className="mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 bg-foreground rounded-lg flex items-center justify-center">
-                <span className="text-background font-bold text-lg">C</span>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+            <div className="flex items-center gap-3">
+              <div className="relative w-10 h-10">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary to-secondary rounded-lg" />
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-white">
+                    <path
+                      d="M6 12c0-3.314 2.686-6 6-6s6 2.686 6 6"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </div>
               </div>
-              <span className="font-bold">Clarity</span>
+              <span className="font-bold text-lg">Clarity</span>
             </div>
-            <nav className="flex gap-8 text-sm text-muted-foreground">
-              <a href="#" className="hover:text-foreground transition">
+            <nav className="flex gap-10 text-sm font-medium text-muted-foreground">
+              <a href="#" className="hover:text-primary transition">
                 Privacy
               </a>
-              <a href="#" className="hover:text-foreground transition">
+              <a href="#" className="hover:text-primary transition">
                 Terms
               </a>
-              <a href="#" className="hover:text-foreground transition">
+              <a href="#" className="hover:text-primary transition">
                 Status
               </a>
-              <a href="#" className="hover:text-foreground transition">
+              <a href="#" className="hover:text-primary transition">
                 Contact
               </a>
             </nav>
