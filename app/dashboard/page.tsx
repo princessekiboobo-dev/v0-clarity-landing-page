@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Upload, AlertTriangle, Zap, CheckCircle, Cloud, History, X, ArrowRight, Settings, Database, LogOut, Bell } from 'lucide-react'
+import { Upload, AlertTriangle, Zap, CheckCircle, Cloud, History, X, ArrowRight, Settings, Database, LogOut, Bell, MessageSquare } from 'lucide-react'
 import { useState } from 'react'
 
 export default function DataCleanroom() {
@@ -10,6 +10,17 @@ export default function DataCleanroom() {
   const [integrityScore, setIntegrityScore] = useState(84)
   const [activeTab, setActiveTab] = useState('dashboard')
   const [showUserMenu, setShowUserMenu] = useState(false)
+  const [chatMessages, setChatMessages] = useState([
+    { id: 1, role: 'assistant', text: 'Hello! I can help you analyze, clean, and modify your data. What would you like to do?' },
+  ])
+  const [chatInput, setChatInput] = useState('')
+  const [liveData, setLiveData] = useState([
+    { id: 1, email: 'john.doe@example.com', status: 'active', signup_date: '2024-01-15', revenue: '$2,450' },
+    { id: 2, email: 'jane.smith@example.com', status: 'active', signup_date: '2024-01-20', revenue: '$3,200' },
+    { id: 3, email: 'bob.wilson@example.com', status: 'inactive', signup_date: '2023-12-10', revenue: '$0' },
+    { id: 4, email: 'alice.brown@example.com', status: 'active', signup_date: '2024-02-01', revenue: '$1,800' },
+    { id: 5, email: 'charlie.davis@example.com', status: 'trial', signup_date: '2024-02-05', revenue: '$500' },
+  ])
 
   const anomalies = [
     { id: 1, type: 'Schema Mismatch', severity: 'high', count: 12, fixed: false },
@@ -108,6 +119,7 @@ export default function DataCleanroom() {
         <div className="flex items-center gap-1">
           {[
             { id: 'dashboard', label: 'Dashboard', icon: Zap },
+            { id: 'talk', label: 'Talk to Data', icon: MessageSquare },
             { id: 'data', label: 'Uploaded Data', icon: Database },
             { id: 'settings', label: 'Settings', icon: Settings },
           ].map(({ id, label, icon: Icon }) => (
@@ -205,6 +217,114 @@ export default function DataCleanroom() {
               </div>
             )
           )}
+          {activeTab === 'talk' && (
+            <div className="w-full h-full flex gap-6 px-8 py-6">
+              {/* Left: AI Chat */}
+              <div className="w-96 bg-white rounded-lg border border-[#E5E7EB] flex flex-col overflow-hidden shadow-sm">
+                {/* Chat Header */}
+                <div className="border-b border-[#E5E7EB] px-6 py-4">
+                  <h3 className="text-lg font-800">Data Assistant</h3>
+                  <p className="text-xs text-[#666666] font-500 mt-1">Powered by AI</p>
+                </div>
+
+                {/* Chat Messages */}
+                <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
+                  {chatMessages.map((msg) => (
+                    <div key={msg.id} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
+                      <div
+                        className={`max-w-xs rounded-lg px-4 py-3 text-sm font-500 ${
+                          msg.role === 'user'
+                            ? 'bg-[#7C3AED] text-white rounded-br-none'
+                            : 'bg-[#F3F4F6] text-[#111111] rounded-bl-none'
+                        }`}
+                      >
+                        {msg.text}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Chat Input */}
+                <div className="border-t border-[#E5E7EB] px-4 py-4">
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={chatInput}
+                      onChange={(e) => setChatInput(e.target.value)}
+                      placeholder="Ask me anything..."
+                      className="flex-1 px-4 py-2 border border-[#E5E7EB] rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#7C3AED]/20"
+                      onKeyPress={(e) => {
+                        if (e.key === 'Enter' && chatInput.trim()) {
+                          setChatMessages([
+                            ...chatMessages,
+                            { id: chatMessages.length + 1, role: 'user', text: chatInput },
+                            { id: chatMessages.length + 2, role: 'assistant', text: 'Processing your request...' },
+                          ])
+                          setChatInput('')
+                        }
+                      }}
+                    />
+                    <button className="p-2 bg-[#7C3AED] hover:bg-[#6D28D9] text-white rounded-lg transition-colors">
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right: Live Spreadsheet */}
+              <div className="flex-1 bg-white rounded-lg border border-[#E5E7EB] flex flex-col overflow-hidden shadow-sm">
+                {/* Spreadsheet Header */}
+                <div className="border-b border-[#E5E7EB] px-6 py-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-lg font-800">Live Data Preview</h3>
+                    <p className="text-xs text-[#666666] font-500 mt-1">{liveData.length} records</p>
+                  </div>
+                  <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full border border-green-200">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="text-xs font-600 text-green-700">Live Updates</span>
+                  </div>
+                </div>
+
+                {/* Spreadsheet Table */}
+                <div className="flex-1 overflow-auto">
+                  <table className="w-full text-sm">
+                    <thead className="sticky top-0 bg-[#F9FAFB] border-b border-[#E5E7EB]">
+                      <tr>
+                        <th className="text-left px-6 py-3 font-700 text-[#111111]">ID</th>
+                        <th className="text-left px-6 py-3 font-700 text-[#111111]">Email</th>
+                        <th className="text-left px-6 py-3 font-700 text-[#111111]">Status</th>
+                        <th className="text-left px-6 py-3 font-700 text-[#111111]">Signup Date</th>
+                        <th className="text-left px-6 py-3 font-700 text-[#111111]">Revenue</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-[#E5E7EB]">
+                      {liveData.map((row, idx) => (
+                        <tr key={idx} className="hover:bg-[#F9FAFB] transition-colors group">
+                          <td className="px-6 py-4 font-600 text-[#111111]">{row.id}</td>
+                          <td className="px-6 py-4 text-[#666666] font-500">{row.email}</td>
+                          <td className="px-6 py-4">
+                            <span
+                              className={`text-xs font-600 px-2.5 py-1 rounded-full ${
+                                row.status === 'active'
+                                  ? 'bg-green-50 text-green-700'
+                                  : row.status === 'inactive'
+                                    ? 'bg-red-50 text-red-700'
+                                    : 'bg-blue-50 text-blue-700'
+                              }`}
+                            >
+                              {row.status}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 text-[#666666] font-500">{row.signup_date}</td>
+                          <td className="px-6 py-4 font-700 text-[#7C3AED]">{row.revenue}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          )}
           {activeTab === 'data' && (
             <div className="w-full max-w-5xl">
               <div className="mb-8">
@@ -279,7 +399,9 @@ export default function DataCleanroom() {
                     ].map((notif, idx) => (
                       <div key={idx} className="flex items-center justify-between">
                         <p className="font-500 text-[#111111]">{notif.label}</p>
-                        <div className={`w-12 h-6 rounded-full transition-colors ${notif.enabled ? 'bg-[#7C3AED]' : 'bg-[#E5E7EB]'}`} />
+                        <div
+                          className={`w-12 h-6 rounded-full transition-colors ${notif.enabled ? 'bg-[#7C3AED]' : 'bg-[#E5E7EB]'}`}
+                        />
                       </div>
                     ))}
                   </div>
@@ -309,7 +431,7 @@ export default function DataCleanroom() {
         </div>
 
         {/* Resolution Stream Sidebar - Only show on dashboard tab */}
-        {activeTab === 'dashboard' && (
+        {activeTab === 'dashboard' && fileLoaded && (
           <div className="w-96 border-l border-[#E5E7EB] bg-[#FAFAFA] flex flex-col">
             <div className="border-b border-[#E5E7EB] px-6 py-4">
               <h3 className="text-lg font-800 tracking-tight">Resolution Stream</h3>
