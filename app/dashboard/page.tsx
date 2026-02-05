@@ -7,7 +7,6 @@ import { useState } from 'react'
 export default function DataCleanroom() {
   const [fileLoaded, setFileLoaded] = useState(false)
   const [showHistory, setShowHistory] = useState(false)
-  const [integrityScore, setIntegrityScore] = useState(84)
   const [activeTab, setActiveTab] = useState('dashboard')
   const [showUserMenu, setShowUserMenu] = useState(false)
   const [chatMessages, setChatMessages] = useState([
@@ -58,13 +57,35 @@ export default function DataCleanroom() {
             <span className="font-700 text-lg tracking-tight">Clarity</span>
           </div>
 
-          {/* Integrity Score */}
-          <div className="flex items-center gap-3 ml-auto md:ml-0">
-            <div className="text-right">
-              <p className="text-xs font-600 text-[#666666] uppercase tracking-wider">Integrity Score</p>
-              <div className="flex items-baseline gap-2">
-                <p className="text-4xl font-800 text-[#7C3AED]">{integrityScore}%</p>
-                <div className="w-8 h-8 rounded-full bg-[#7C3AED]/10 pulse-glow" />
+          {/* API Performance */}
+          <div className="flex items-center gap-6 ml-auto md:ml-0">
+            <div className="flex items-center gap-4">
+              {/* Response Time */}
+              <div className="text-right">
+                <p className="text-xs font-600 text-[#666666] uppercase tracking-wider">Response Time</p>
+                <div className="flex items-baseline gap-2 mt-1">
+                  <p className="text-2xl font-800 text-[#7C3AED]">142</p>
+                  <p className="text-sm font-600 text-[#666666]">ms</p>
+                </div>
+              </div>
+              
+              {/* Throughput */}
+              <div className="w-px h-12 bg-[#E5E7EB]" />
+              
+              <div className="text-right">
+                <p className="text-xs font-600 text-[#666666] uppercase tracking-wider">Throughput</p>
+                <div className="flex items-baseline gap-2 mt-1">
+                  <p className="text-2xl font-800 text-green-600">2.4K</p>
+                  <p className="text-sm font-600 text-[#666666]">rec/s</p>
+                </div>
+              </div>
+
+              {/* Server Status */}
+              <div className="w-px h-12 bg-[#E5E7EB]" />
+              
+              <div className="flex items-center gap-2 px-3 py-1.5 bg-green-50 rounded-full border border-green-200">
+                <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse" />
+                <span className="text-xs font-700 text-green-700">All Systems Go</span>
               </div>
             </div>
           </div>
